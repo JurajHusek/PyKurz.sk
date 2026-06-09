@@ -102,3 +102,13 @@ Autor moze kurz upravovat, ostatni prihlaseni pouzivatelia ho vedia citat a spus
 
 Backend priecinok `backend/` je pripraveny ako samostatny Vercel projekt cez `backend/api/index.py` a `backend/vercel.json`.
 Detailny postup je v `backend/README_DEPLOY.md`.
+
+## Frontend na GitHub Pages
+
+Pri projektovej GitHub Pages URL typu `https://username.github.io/nazov-repa/` musi mat Next staticky export nastavenu premennu:
+
+```env
+NEXT_PUBLIC_BASE_PATH=/nazov-repa
+```
+
+GitHub Actions workflow ju nastavuje automaticky podla nazvu repozitara, ak nie je zadana manualne.
