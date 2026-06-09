@@ -3,6 +3,9 @@
 build:
 	docker compose build
 
+frontend-static:
+	cd frontend && npm run build
+
 dev:
 	docker compose up
 
@@ -20,4 +23,3 @@ shell-backend:
 
 shell-frontend:
 	docker compose exec frontend sh
-

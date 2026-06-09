@@ -12,4 +12,7 @@ build/
 *.pyo
 *.log
 postgres-data/
-
+backend/data/
+*.db
+*.sqlite
+*.sqlite3

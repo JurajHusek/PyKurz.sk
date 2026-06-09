@@ -2,8 +2,8 @@ import "./globals.css";
 import "easymde/dist/easymde.min.css";
 
 export const metadata = {
-  title: "Python Course Portal",
-  description: "Markdown kurzy s lokalne spustitelnym Pythonom cez Pyodide.",
+  title: "PyKurz.sk",
+  description: "Interaktívny portál s kurzami pre študentov programovania v Pythone",
 };
 
 export default function RootLayout({ children }) {

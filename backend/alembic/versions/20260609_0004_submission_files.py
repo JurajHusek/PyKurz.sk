@@ -18,7 +18,6 @@ depends_on: Union[str, Sequence[str], None] = None
 
 def upgrade() -> None:
     op.add_column("test_submissions", sa.Column("files_json", sa.Text(), nullable=False, server_default="{}"))
-    op.alter_column("test_submissions", "files_json", server_default=None)
 
 
 def downgrade() -> None:

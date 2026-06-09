@@ -216,7 +216,7 @@ function AppNav({ user, view, theme, setView, setTheme, onLogout }) {
     <header className="app-nav">
       <button className="brand-button" onClick={() => setView("home")}>
         <span className="brand-mark">Py</span>
-        <span>Python Kurzy</span>
+        <span>PyKurz.sk</span>
       </button>
 
       <nav className="nav-actions" aria-label="Hlavna navigacia">
@@ -414,7 +414,8 @@ function ProfileView({ user, courses, isLoading, createCourse, onOpenCourse }) {
 function AppFooter() {
   return (
     <footer className="app-footer">
-      <span>Copyright 2026 Python Course Portal. All rights reserved.</span>
+      <span>Copyright © 2026 PyKurz.sk. Všetky práva vyhradené.</span>
+      <span> Autorom je <a href="https://github.com/JurajHusek">Bc. Juraj Hušek</a></span>
     </footer>
   );
 }
