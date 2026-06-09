@@ -1,0 +1,1120 @@
+:root {
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+button,
+input,
+textarea {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+.app-root {
+  --bg: #eaf6ff;
+  --surface: #ffffff;
+  --surface-soft: #f5fbff;
+  --border: #c8e3f6;
+  --text: #10233d;
+  --muted: #5d7792;
+  --primary: #0f5ea8;
+  --primary-strong: #073b72;
+  --primary-soft: #d9efff;
+  --shadow: 0 18px 50px rgb(15 94 168 / 12%);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background:
+    radial-gradient(circle at top left, rgb(174 220 255 / 55%), transparent 32rem),
+    var(--bg);
+  color: var(--text);
+}
+
+.app-root[data-theme="dark"] {
+  --bg: #07182c;
+  --surface: #0d223a;
+  --surface-soft: #112c4b;
+  --border: #21496d;
+  --text: #e7f4ff;
+  --muted: #9ebbd5;
+  --primary: #6bbcff;
+  --primary-strong: #b9e1ff;
+  --primary-soft: #12395d;
+  --shadow: 0 20px 60px rgb(0 0 0 / 24%);
+  background:
+    radial-gradient(circle at top left, rgb(38 113 174 / 38%), transparent 32rem),
+    var(--bg);
+}
+
+.app-nav {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  gap: 18px;
+  align-items: center;
+  padding: 14px clamp(16px, 4vw, 44px);
+  border-bottom: 1px solid var(--border);
+  background: color-mix(in srgb, var(--surface) 88%, transparent);
+  backdrop-filter: blur(16px);
+}
+
+.brand-button,
+.nav-button,
+.theme-button,
+.primary-button,
+.secondary-button,
+.icon-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: 0;
+  border-radius: 8px;
+  min-height: 40px;
+  white-space: nowrap;
+}
+
+.brand-button {
+  padding: 0;
+  background: transparent;
+  color: var(--text);
+  font-weight: 900;
+}
+
+.brand-mark {
+  display: inline-grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, var(--primary), var(--primary-strong));
+  color: #ffffff;
+  font-weight: 900;
+}
+
+.nav-actions {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  min-width: 0;
+}
+
+.nav-button,
+.theme-button,
+.secondary-button,
+.icon-button {
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text);
+}
+
+.nav-button {
+  padding: 0 14px;
+}
+
+.nav-button.active {
+  border-color: transparent;
+  background: var(--primary-soft);
+  color: var(--primary-strong);
+}
+
+.nav-tools {
+  display: flex;
+  gap: 8px;
+}
+
+.nav-icon {
+  width: 18px;
+  height: 18px;
+  flex: 0 0 auto;
+}
+
+.theme-button,
+.icon-button {
+  width: 42px;
+}
+
+.main-shell {
+  flex: 1;
+  width: min(1120px, calc(100% - 32px));
+  margin: 0 auto;
+  padding: 34px 0 56px;
+}
+
+.main-shell.wide {
+  width: min(1480px, calc(100% - 32px));
+}
+
+.toast {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  z-index: 30;
+  max-width: min(420px, calc(100vw - 40px));
+  padding: 12px 14px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface);
+  color: var(--text);
+  box-shadow: var(--shadow);
+}
+
+.home-view {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(280px, 0.65fr);
+  gap: 28px;
+  align-items: center;
+  min-height: calc(100vh - 150px);
+}
+
+.hero-copy {
+  display: grid;
+  gap: 18px;
+}
+
+.eyebrow {
+  color: var(--primary);
+  font-size: 0.8rem;
+  font-weight: 900;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+.hero-copy h1,
+.view-heading h1,
+.profile-header h1,
+.auth-card h1 {
+  margin: 0;
+  color: var(--text);
+  letter-spacing: 0;
+}
+
+.hero-copy h1 {
+  max-width: 880px;
+  font-size: clamp(2.3rem, 6vw, 4.6rem);
+  line-height: 1.02;
+}
+
+.hero-copy p,
+.view-heading p,
+.profile-header p,
+.course-card p,
+.feature-card span {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.65;
+}
+
+.hero-copy p {
+  max-width: 720px;
+  font-size: 1.08rem;
+}
+
+.hero-actions,
+.toolbar,
+.page-title-row,
+.profile-header,
+.python-meta {
+  display: flex;
+  align-items: center;
+}
+
+.hero-actions {
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.primary-button,
+.secondary-button {
+  padding: 0 16px;
+  font-weight: 800;
+}
+
+.primary-button {
+  background: var(--primary);
+  color: #ffffff;
+}
+
+.secondary-button {
+  color: var(--primary-strong);
+}
+
+.feature-grid {
+  display: grid;
+  gap: 12px;
+}
+
+.feature-card,
+.auth-card,
+.course-card,
+.lesson-preview,
+.page-editor {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface);
+  box-shadow: var(--shadow);
+}
+
+.feature-card {
+  display: grid;
+  gap: 8px;
+  padding: 18px;
+}
+
+.feature-card strong {
+  color: var(--text);
+  font-size: 1.04rem;
+}
+
+.auth-view {
+  display: grid;
+  place-items: center;
+  min-height: calc(100vh - 160px);
+}
+
+.auth-card {
+  display: grid;
+  gap: 14px;
+  width: min(440px, 100%);
+  padding: 24px;
+}
+
+.auth-card input,
+.course-fields input,
+.page-title-row input {
+  width: 100%;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 11px 12px;
+  background: var(--surface-soft);
+  color: var(--text);
+}
+
+.role-picker {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.role-picker label {
+  display: grid;
+  gap: 5px;
+  min-height: 96px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 12px;
+  background: var(--surface-soft);
+  color: var(--text);
+}
+
+.role-picker label.active {
+  border-color: var(--primary);
+  background: var(--primary-soft);
+}
+
+.role-picker input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.role-picker span {
+  font-weight: 900;
+}
+
+.role-picker small {
+  color: var(--muted);
+  line-height: 1.35;
+}
+
+.segmented {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4px;
+  padding: 4px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface-soft);
+}
+
+.segmented button,
+.page-tabs button {
+  border: 0;
+  border-radius: 6px;
+  padding: 9px 10px;
+  background: transparent;
+  color: var(--muted);
+}
+
+.segmented .active,
+.page-tabs .active {
+  background: var(--surface);
+  color: var(--primary-strong);
+  box-shadow: 0 1px 4px rgb(15 94 168 / 14%);
+}
+
+.content-view {
+  display: grid;
+  gap: 20px;
+}
+
+.view-heading {
+  display: grid;
+  gap: 8px;
+}
+
+.view-heading h1,
+.profile-header h1,
+.auth-card h1 {
+  font-size: clamp(1.8rem, 4vw, 3rem);
+}
+
+.course-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 14px;
+}
+
+.course-card {
+  display: grid;
+  gap: 10px;
+  min-height: 170px;
+  padding: 18px;
+  text-align: left;
+  color: var(--text);
+}
+
+.course-card:hover {
+  border-color: var(--primary);
+}
+
+.course-card span {
+  width: fit-content;
+  border-radius: 999px;
+  padding: 4px 9px;
+  background: var(--primary-soft);
+  color: var(--primary-strong);
+  font-size: 0.78rem;
+  font-weight: 900;
+}
+
+.course-card strong {
+  font-size: 1.16rem;
+}
+
+.profile-header {
+  justify-content: space-between;
+  gap: 18px;
+  padding: 20px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface);
+  box-shadow: var(--shadow);
+}
+
+.role-badge {
+  display: inline-flex;
+  width: fit-content;
+  margin-top: 10px;
+  border-radius: 999px;
+  padding: 5px 10px;
+  background: var(--primary-soft);
+  color: var(--primary-strong);
+  font-size: 0.82rem;
+  font-weight: 900;
+}
+
+.role-badge.muted {
+  background: var(--surface-soft);
+  color: var(--muted);
+}
+
+.student-panel {
+  display: grid;
+  gap: 8px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 22px;
+  background: var(--surface);
+  box-shadow: var(--shadow);
+}
+
+.student-panel h2,
+.student-panel p {
+  margin: 0;
+}
+
+.student-panel p {
+  color: var(--muted);
+  line-height: 1.65;
+}
+
+.course-workspace {
+  display: grid;
+  gap: 16px;
+}
+
+.enroll-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 16px;
+  background: var(--primary-soft);
+  color: var(--text);
+}
+
+.enroll-banner div {
+  display: grid;
+  gap: 4px;
+}
+
+.enroll-banner span {
+  color: var(--muted);
+}
+
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 18px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface);
+  box-shadow: var(--shadow);
+}
+
+.course-fields {
+  display: grid;
+  gap: 8px;
+  min-width: 0;
+  width: min(780px, 100%);
+}
+
+.course-fields h1,
+.course-fields p {
+  margin: 0;
+}
+
+.course-fields h1 {
+  font-size: 1.55rem;
+}
+
+.course-fields p {
+  color: var(--muted);
+}
+
+.toolbar {
+  gap: 10px;
+}
+
+.switch {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+.publish-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--text);
+  font-weight: 900;
+  white-space: nowrap;
+}
+
+.publish-toggle input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.publish-toggle-track {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  width: 52px;
+  height: 30px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--surface-soft);
+  box-shadow: inset 0 1px 3px rgb(16 35 61 / 12%);
+  transition: background 0.16s ease, border-color 0.16s ease;
+}
+
+.publish-toggle-thumb {
+  position: absolute;
+  left: 4px;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: #ffffff;
+  box-shadow: 0 2px 8px rgb(16 35 61 / 24%);
+  transition: transform 0.16s ease;
+}
+
+.publish-toggle input:checked + .publish-toggle-track {
+  border-color: var(--primary);
+  background: var(--primary);
+}
+
+.publish-toggle input:checked + .publish-toggle-track .publish-toggle-thumb {
+  transform: translateX(21px);
+}
+
+.publish-toggle input:focus-visible + .publish-toggle-track {
+  outline: 3px solid color-mix(in srgb, var(--primary) 28%, transparent);
+  outline-offset: 2px;
+}
+
+.lesson-layout {
+  display: grid;
+  gap: 12px;
+}
+
+.page-tabs {
+  display: flex;
+  gap: 6px;
+  overflow-x: auto;
+}
+
+.page-tabs button {
+  min-width: 120px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+}
+
+.page-tabs .add-page {
+  min-width: 42px;
+}
+
+.lesson-surface {
+  min-width: 0;
+}
+
+.editor-grid {
+  display: grid;
+  grid-template-columns: minmax(360px, 1fr) minmax(360px, 1fr);
+  gap: 18px;
+  align-items: start;
+}
+
+.page-editor {
+  min-width: 0;
+  padding: 14px;
+}
+
+.page-title-row {
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.icon-button.strong {
+  background: var(--primary);
+  color: #ffffff;
+}
+
+.icon-button.danger {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+.lesson-preview {
+  min-width: 0;
+  padding: 24px;
+  line-height: 1.65;
+}
+
+.lesson-preview h1,
+.lesson-preview h2,
+.lesson-preview h3 {
+  line-height: 1.2;
+}
+
+.lesson-preview img {
+  max-width: 100%;
+}
+
+.python-block {
+  overflow: hidden;
+  margin: 18px 0;
+  border: 1px solid var(--python-border);
+  border-radius: 8px;
+  background: var(--python-bg);
+  color: var(--python-text);
+}
+
+.python-block.is-dark {
+  --python-bg: #101820;
+  --python-panel: #16222d;
+  --python-border: #263642;
+  --python-gutter: #0b1117;
+  --python-text: #dce7ea;
+  --python-muted: #a7bbc4;
+  --python-output-bg: #0b1117;
+  --python-output-text: #8ee3ad;
+}
+
+.python-block.is-light {
+  --python-bg: #ffffff;
+  --python-panel: #f3f7f8;
+  --python-border: #cbd8dc;
+  --python-gutter: #e7eef0;
+  --python-text: #17212b;
+  --python-muted: #61717c;
+  --python-output-bg: #eef7f0;
+  --python-output-text: #17613a;
+}
+
+.python-meta {
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--python-border);
+  background: var(--python-panel);
+  color: var(--python-muted);
+}
+
+.python-meta button,
+.python-actions button,
+.python-file-toolbar button {
+  min-height: 36px;
+  border: 0;
+  border-radius: 6px;
+  padding: 0 12px;
+  background: #f5c542;
+  color: #18202a;
+  font-weight: 800;
+}
+
+.python-code-window,
+.python-editor-window {
+  display: grid;
+  grid-template-columns: minmax(44px, auto) minmax(0, 1fr);
+  background: var(--python-bg);
+  font-family: "Cascadia Code", "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  font-size: 0.92rem;
+  line-height: 1.55;
+}
+
+.python-code-window {
+  overflow-x: auto;
+}
+
+.python-editor-window {
+  overflow: hidden;
+}
+
+.python-editor-lines {
+  display: grid;
+  align-content: start;
+  min-height: 180px;
+  overflow: hidden;
+  padding-block: 10px;
+  border-right: 1px solid var(--python-border);
+  background: var(--python-gutter);
+  color: var(--python-muted);
+  text-align: right;
+  user-select: none;
+}
+
+.python-editor-lines span {
+  min-height: 24px;
+  padding-inline: 12px;
+}
+
+.python-editor-input {
+  min-height: 180px;
+  width: 100%;
+  resize: vertical;
+  border: 0;
+  border-radius: 0;
+  outline: none;
+  padding: 10px 14px;
+  background: var(--python-bg);
+  color: var(--python-text);
+  font: inherit;
+  line-height: inherit;
+  white-space: pre;
+  overflow: auto;
+}
+
+.python-file-panel {
+  border-top: 1px solid var(--python-border);
+  background: var(--python-panel);
+}
+
+.python-file-toolbar {
+  display: flex;
+  gap: 8px;
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--python-border);
+}
+
+.python-file-toolbar input {
+  min-width: 0;
+  flex: 1;
+  border: 1px solid var(--python-border);
+  border-radius: 6px;
+  padding: 8px 10px;
+  background: var(--python-bg);
+  color: var(--python-text);
+}
+
+.python-file-list {
+  display: grid;
+  gap: 10px;
+  padding: 12px;
+}
+
+.python-file-card {
+  overflow: hidden;
+  border: 1px solid var(--python-border);
+  border-radius: 8px;
+  background: var(--python-bg);
+}
+
+.python-file-name {
+  padding: 8px 10px;
+  border-bottom: 1px solid var(--python-border);
+  background: var(--python-gutter);
+  color: var(--python-muted);
+  font-family: "Cascadia Code", "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  font-size: 0.86rem;
+}
+
+.python-file-card textarea {
+  display: block;
+  min-height: 120px;
+  width: 100%;
+  resize: vertical;
+  border: 0;
+  outline: none;
+  padding: 10px 12px;
+  background: var(--python-bg);
+  color: var(--python-text);
+  font-family: "Cascadia Code", "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  white-space: pre;
+  overflow: auto;
+}
+
+.python-line-number,
+.python-line-code {
+  min-height: 24px;
+  padding-block: 2px;
+}
+
+.python-line-number {
+  padding-inline: 12px;
+  border-right: 1px solid var(--python-border);
+  background: var(--python-gutter);
+  color: var(--python-muted);
+  text-align: right;
+  user-select: none;
+}
+
+.python-line-code {
+  display: block;
+  min-width: max-content;
+  padding-inline: 14px;
+  color: var(--python-text);
+  white-space: pre;
+}
+
+.python-block pre.python-output {
+  margin: 0;
+  padding: 14px;
+  overflow-x: auto;
+}
+
+.python-output {
+  border-top: 1px solid var(--python-border);
+  background: var(--python-output-bg);
+  color: var(--python-output-text);
+}
+
+.python-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  padding: 10px 12px;
+  border-top: 1px solid var(--python-border);
+  background: var(--python-panel);
+}
+
+.test-section {
+  display: grid;
+  gap: 16px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 18px;
+  background: var(--surface);
+  box-shadow: var(--shadow);
+}
+
+.test-heading,
+.test-card-head,
+.student-row,
+.submission-meta,
+.test-actions {
+  display: flex;
+  align-items: center;
+}
+
+.test-heading,
+.test-card-head,
+.student-row {
+  justify-content: space-between;
+  gap: 14px;
+}
+
+.test-heading h2,
+.student-list h3,
+.submission-list h3,
+.test-card h3 {
+  margin: 0;
+}
+
+.student-list,
+.test-list,
+.submission-list {
+  display: grid;
+  gap: 10px;
+}
+
+.test-empty {
+  display: grid;
+  gap: 4px;
+  border: 1px dashed var(--border);
+  border-radius: 8px;
+  padding: 14px;
+  background: var(--surface-soft);
+}
+
+.test-empty span {
+  color: var(--muted);
+}
+
+.student-row,
+.submission-card,
+.test-card {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface-soft);
+}
+
+.student-row {
+  padding: 12px;
+}
+
+.student-row div,
+.submission-meta {
+  display: grid;
+  gap: 3px;
+}
+
+.student-row span,
+.submission-meta span,
+.test-note {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.test-card {
+  display: grid;
+  gap: 12px;
+  padding: 14px;
+}
+
+.test-card input,
+.test-assignment,
+.test-code-editor {
+  width: 100%;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 10px 12px;
+  background: var(--surface);
+  color: var(--text);
+}
+
+.test-card input {
+  min-width: 0;
+  font-weight: 800;
+}
+
+.test-assignment {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.test-code-editor {
+  min-height: 180px;
+  resize: vertical;
+  font-family: "Cascadia Code", "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  line-height: 1.5;
+  white-space: pre;
+}
+
+.student-python-ide {
+  overflow: hidden;
+  border: 1px solid var(--python-border);
+  border-radius: 8px;
+  background: var(--python-bg);
+}
+
+.student-python-ide.is-dark {
+  --python-bg: #101820;
+  --python-panel: #16222d;
+  --python-border: #263642;
+  --python-text: #dce7ea;
+  --python-muted: #a7bbc4;
+  --python-output-bg: #0b1117;
+  --python-output-text: #8ee3ad;
+}
+
+.student-python-ide.is-light {
+  --python-bg: #ffffff;
+  --python-panel: #f3f7f8;
+  --python-border: #cbd8dc;
+  --python-text: #17212b;
+  --python-muted: #61717c;
+  --python-output-bg: #eef7f0;
+  --python-output-text: #17613a;
+}
+
+.student-python-ide .test-code-editor {
+  min-height: 260px;
+  border: 0;
+  border-radius: 0;
+  background: var(--python-bg);
+  color: var(--python-text);
+  outline: none;
+}
+
+.student-test-output {
+  margin: 0;
+  padding: 14px;
+  border-top: 1px solid var(--python-border);
+  background: var(--python-output-bg);
+  color: var(--python-output-text);
+  overflow-x: auto;
+}
+
+.test-actions {
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.submission-card {
+  display: grid;
+  gap: 10px;
+  padding: 12px;
+}
+
+.submission-card pre {
+  margin: 0;
+  overflow-x: auto;
+  border-radius: 8px;
+  padding: 12px;
+  background: #101820;
+  color: #dce7ea;
+}
+
+.submission-files {
+  display: grid;
+  gap: 8px;
+}
+
+.submission-files .python-file-card pre {
+  border-radius: 0;
+  background: var(--python-bg);
+  color: var(--python-text);
+}
+
+.submission-output {
+  border: 1px solid var(--border);
+}
+
+button:disabled,
+textarea:disabled {
+  cursor: not-allowed;
+  opacity: 0.58;
+}
+
+.app-footer {
+  display: flex;
+  justify-content: center;
+  padding: 22px 16px 28px;
+  border-top: 1px solid var(--border);
+  background: color-mix(in srgb, var(--surface) 72%, transparent);
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+@media (max-width: 900px) {
+  .app-nav {
+    grid-template-columns: 1fr;
+  }
+
+  .nav-actions {
+    justify-content: flex-start;
+    overflow-x: auto;
+  }
+
+  .nav-tools {
+    justify-content: flex-start;
+  }
+
+  .home-view,
+  .editor-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .topbar,
+  .profile-header {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .role-picker {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 620px) {
+  .main-shell {
+    width: min(100% - 20px, 1120px);
+    padding-block: 18px 40px;
+  }
+
+  .nav-button {
+    padding: 0 10px;
+  }
+
+  .hero-copy h1 {
+    font-size: 2rem;
+  }
+}

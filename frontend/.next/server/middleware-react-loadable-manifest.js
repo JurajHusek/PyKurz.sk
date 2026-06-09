@@ -1,0 +1,1 @@
+self.__REACT_LOADABLE_MANIFEST="{\"app/page.js -> react-simplemde-editor\":{\"id\":\"app/page.js -> react-simplemde-editor\",\"files\":[\"static/chunks/_app-pages-browser_node_modules_react-simplemde-editor_dist_SimpleMdeReact_mjs.js\"]}}"

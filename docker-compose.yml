@@ -37,17 +37,16 @@ services:
     build:
       context: ./frontend
     environment:
-      VITE_API_URL: http://localhost:8000
+      NEXT_PUBLIC_API_URL: http://localhost:8000
     volumes:
       - ./frontend:/app
-      - frontend-node-modules:/app/node_modules
+      - frontend-next-node-modules:/app/node_modules
     ports:
       - "5173:5173"
     depends_on:
       - backend
-    command: npm run dev -- --host 0.0.0.0
+    command: npm run dev -- -H 0.0.0.0 -p 5173
 
 volumes:
   postgres-data:
-  frontend-node-modules:
-
+  frontend-next-node-modules:

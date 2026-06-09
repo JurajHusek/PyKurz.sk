@@ -22,6 +22,7 @@ def register(payload: RegisterRequest, db: Annotated[Session, Depends(get_db)]) 
     user = User(
         email=payload.email.lower(),
         display_name=payload.display_name,
+        role=payload.role,
         hashed_password=hash_password(payload.password),
     )
     db.add(user)
@@ -41,4 +42,3 @@ def login(payload: LoginRequest, db: Annotated[Session, Depends(get_db)]) -> Tok
 @router.get("/me", response_model=UserRead)
 def me(current_user: Annotated[User, Depends(get_current_user)]) -> User:
     return current_user
-
