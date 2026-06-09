@@ -1,4 +1,9 @@
-const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
+const configuredApiUrl = process.env.NEXT_PUBLIC_API_URL;
+const API_URL =
+  configuredApiUrl ||
+  (typeof window !== "undefined" && window.location.hostname !== "localhost" && window.location.hostname !== "127.0.0.1"
+    ? "https://python-education-portal.vercel.app"
+    : "http://localhost:8000");
 const TOKEN_KEY = "course_portal_token";
 
 export function getToken() {
