@@ -1,114 +1,91 @@
-# Python Course Portal
+# PyKurz.sk
 
-Portal podobny Trinket.io pre tvorbu kurzov s markdown ucebnicou a lokalne spustitelnym Pythonom cez Pyodide.
+PyKurz.sk is a web platform for creating and sharing interactive Python courses. It is designed for teachers, students, and beginner programmers who need a lightweight learning environment with course pages, markdown-based materials, browser-executable Python examples, and practical coding tests.
 
-## Stack
+Live demo: [https://jurajhusek.github.io/PyKurz.sk/](https://jurajhusek.github.io/PyKurz.sk/)
 
-- Backend: FastAPI, SQLAlchemy, SQLite, JWT auth
-- Frontend: Next.js + React, JavaScript
+## Project Purpose
+
+The goal of the project is to provide a simple educational portal inspired by tools such as Trinket.io, but focused on course authoring and classroom use. Teachers can create courses, write lesson content, add interactive Python blocks, publish tests, and review student submissions. Students can browse public courses, enroll in them, run Python code directly in the browser, and submit solutions to assigned tests.
+
+Python execution runs locally in the browser through Pyodide, so students do not need to install Python or any external development tools.
+
+## Main Features
+
+- User registration and login with teacher/student roles
+- Public course browsing
+- Course creation and editing for teachers
+- Markdown-based course pages
+- Interactive Python code blocks powered by Pyodide
+- Python blocks with simulated file operations
+- Student enrollment in courses
+- Publishable and unpublishable course tests
+- One-time student test submissions
+- Teacher view for enrolled students and submitted code
+- Light/dark mode for the application and Python editors
+- Containerized local development with Docker Compose
+
+## Technology Stack
+
+- Backend: FastAPI, SQLAlchemy, Alembic, JWT authentication
+- Frontend: Next.js, React, plain JavaScript, HTML, CSS
+- Python runtime: Pyodide
 - Markdown editor: EasyMDE
-- Python runtime: Pyodide v browseri
-- Dev orchestration: Docker Compose + Makefile
+- Database: SQLite by default, with optional Turso/libSQL support
+- Development environment: Docker Compose and Makefile
 
-## Databaza
+## Project Structure
 
-Projekt je nastavany na SQLite, aby sa dal lacno a jednoducho nasadit bez samostatneho Postgres servera.
-V Dockeri sa databaza uklada do `backend/data/course_portal.db` cez mount `/data/course_portal.db`.
-
-Volitelne vies backend napojit na Turso/libSQL. Nastav v env:
-
-```env
-TURSO_DATABASE_URL=libsql://tvoja-db.turso.io
-TURSO_AUTH_TOKEN=...
+```text
+.
+├── backend/              # FastAPI application, database models, schemas, API routes
+│   ├── app/
+│   │   ├── api/          # API endpoints
+│   │   ├── core/         # Configuration and security
+│   │   ├── db/           # Database session setup
+│   │   ├── models/       # SQLAlchemy models
+│   │   └── schemas/      # Pydantic schemas
+│   ├── alembic/          # Database migrations
+│   └── api/              # Vercel serverless entrypoint
+├── frontend/             # Next.js frontend application
+│   ├── app/              # Application pages and UI
+│   └── lib/              # API client and shared frontend helpers
+├── docker-compose.yml    # Local multi-container setup
+├── Makefile              # Common development commands
+└── README.md
 ```
 
-Ak su tieto hodnoty nastavene, backend pouzije Turso namiesto lokalneho SQLite suboru.
-Pri Docker Compose dev spusteni vloz tieto hodnoty do `.env` v koreni projektu. Pri spusteni backendu bez Dockeru ich mozes dat do `backend/.env`.
+## Local Development
 
-## Spustenie
+Build and start the application:
 
 ```bash
 make build
 make dev
 ```
 
-Frontend: http://localhost:5173
+Default local URLs:
 
-Backend API: http://localhost:8000
+- Frontend: `http://localhost:5173`
+- Backend API: `http://localhost:8000`
+- API documentation: `http://localhost:8000/docs`
 
-API docs: http://localhost:8000/docs
-
-Staticky build frontendu:
-
-```bash
-cd frontend
-npm run build
-```
-
-Vystup pre staticky hosting bude v `frontend/out/`.
-
-Vypnutie:
+Stop the development environment:
 
 ```bash
 make down
 ```
 
-## Seed flow
+## Database
 
-1. Zaregistruj pouzivatela.
-2. Pri registracii zvol rolu `Autor` alebo `Student`.
-3. Autor vie vytvorit kurz, student vie verejne kurzy citat a spustat ukazky.
-4. Pridaj alebo uprav stranky v kurze.
-5. Markdown stranky mozu obsahovat Python bloky:
+The project uses SQLite by default to keep development and low-cost deployment simple. In Docker-based local development, the database file is stored in:
 
-````markdown
-```python
-print("Ahoj z Pyodide")
-```
-````
-
-Editovatelny Python blok pre citatela zapis takto:
-
-````markdown
-```python-interactive
-name = "Ada"
-print("Ahoj", name)
-```
-````
-
-Editovatelny Python blok s virtualnymi subormi zapis takto:
-
-````markdown
-```python-interactive-file
-with open("data.txt", "w") as file:
-    file.write("Ahoj subor")
-
-with open("data.txt") as file:
-    print(file.read())
-```
-````
-
-Autor moze kurz upravovat, ostatni prihlaseni pouzivatelia ho vedia citat a spustat ukazky, ale nie menit obsah.
-
-## Kurzy a testy
-
-- Student sa musi prihlasit na kurz, aby mohol odovzdat test.
-- Autor kurzu vie vytvarat testy, zverejnit ich alebo nezverejnit.
-- Nezverejneny test neprijima odovzdania.
-- Autor vidi prihlasenych studentov a vie ich z kurzu odmazat.
-- Autor vidi odovzdany kod studenta a vie ho spustit v Pyodide.
-
-## Backend na Vercel
-
-Backend priecinok `backend/` je pripraveny ako samostatny Vercel projekt cez `backend/api/index.py` a `backend/vercel.json`.
-Detailny postup je v `backend/README_DEPLOY.md`.
-
-## Frontend na GitHub Pages
-
-Pri projektovej GitHub Pages URL typu `https://username.github.io/nazov-repa/` musi mat Next staticky export nastavenu premennu:
-
-```env
-NEXT_PUBLIC_BASE_PATH=/nazov-repa
+```text
+backend/data/course_portal.db
 ```
 
-GitHub Actions workflow ju nastavuje automaticky podla nazvu repozitara, ak nie je zadana manualne.
+The backend can also be configured to use Turso/libSQL for hosted SQLite-compatible storage.
+
+## Author
+
+The author of the project is **Bc. Juraj Hušek**, a student at **FEI STU** in the field of **Applied Informatics**. He was also a computer science teacher during the academic years **2024/25** and **2025/26** at **Gymnázium sv. Františka Assiského v Malackách**.

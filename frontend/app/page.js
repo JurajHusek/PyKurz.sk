@@ -414,8 +414,7 @@ function ProfileView({ user, courses, isLoading, createCourse, onOpenCourse }) {
 function AppFooter() {
   return (
     <footer className="app-footer">
-      <span>Copyright © 2026 PyKurz.sk. Všetky práva vyhradené.</span>
-      <span> Autorom je <a href="https://github.com/JurajHusek">Bc. Juraj Hušek</a></span>
+      <span>Copyright © 2026 PyKurz.sk. Všetky práva vyhradené. Autorom je <a href="https://github.com/JurajHusek">Bc. Juraj Hušek</a></span>
     </footer>
   );
 }
